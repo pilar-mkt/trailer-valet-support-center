@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support Center | Trailer Valet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ======================================================
+     TRAILER VALET SUPPORT CENTER — DESIGN TOKENS
+     ====================================================== */
+  :root{
+    --tv-black:#0a0a0a;
+    --tv-white:#ffffff;
+    --tv-yellow:#ffcc02;
+    --tv-gray-100:#f5f5f5;
+    --tv-gray-200:#ececec;
+    --tv-gray-300:#dcdcdc;
+    --tv-gray-500:#8a8a8a;
+    --tv-gray-700:#4a4a4a;
+    --tv-border:#e2e2e2;
+
+    --font-display:'Oswald', sans-serif;
+    --font-body:'Inter', sans-serif;
+
+    --max-width:1280px;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:var(--font-body);
+    color:var(--tv-black);
+    background:var(--tv-white);
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;}
+  ul{margin:0;padding:0;list-style:none;}
+
+  .tv-wrap{max-width:var(--max-width);margin:0 auto;padding:0 24px;}
+
+  h1,h2,h3{
+    font-family:var(--font-display);
+    text-transform:uppercase;
+    font-weight:700;
+    letter-spacing:0.02em;
+    margin:0;
+  }
+
+  /* ======================================================
+     PROMO BAR
+     ====================================================== */
+  .tv-promo-bar{
+    background:var(--tv-black);
+    color:var(--tv-white);
+    text-align:center;
+    font-family:var(--font-display);
+    font-size:11px;
+    letter-spacing:0.15em;
+    padding:8px 0;
+  }
+
+  /* ======================================================
+     HEADER / NAV
+     ====================================================== */
+  .tv-header{
+    background:var(--tv-black);
+    color:var(--tv-white);
+  }
+  .tv-header-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 24px;
+  }
+  .tv-logo{
+    display:flex;
+    align-items:center;
+  }
+  .tv-logo img{
+    height:26px;
+    width:auto;
+    display:block;
+  }
+  .tv-nav-links{
+    display:flex;
+    gap:36px;
+    font-size:13px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+  }
+  .tv-nav-links a{opacity:0.9;transition:opacity .2s;}
+  .tv-nav-links a:hover{opacity:1;}
+  .tv-nav-icons{
+    display:flex;
+    align-items:center;
+    gap:20px;
+  }
+  .tv-nav-icons svg{width:19px;height:19px;stroke:var(--tv-white);}
+  .tv-cart-badge{
+    position:relative;
+  }
+  .tv-cart-badge .count{
+    position:absolute;
+    top:-8px;right:-9px;
+    background:var(--tv-yellow);
+    color:var(--tv-black);
+    font-size:10px;
+    font-weight:700;
+    width:15px;height:15px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .tv-hamburger{display:none;}
+
+  /* ======================================================
+     HERO
+     ====================================================== */
+  .tv-hero{
+    position:relative;
+    background-image:
+      linear-gradient(180deg, rgba(10,10,10,0.45) 0%, rgba(10,10,10,0.7) 100%),
+      url('assets/hero-desktop.png');
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    color:var(--tv-white);
+    text-align:center;
+    padding:90px 24px 100px;
+  }
+  .tv-hero-eyebrow{
+    font-family:var(--font-display);
+    font-size:12px;
+    letter-spacing:0.25em;
+    opacity:0.85;
+    margin-bottom:10px;
+  }
+  .tv-hero h1{
+    font-size:42px;
+    line-height:1.15;
+    margin-bottom:32px;
+  }
+  .tv-search{
+    max-width:560px;
+    margin:0 auto;
+    display:flex;
+    background:var(--tv-white);
+    border-radius:2px;
+    overflow:hidden;
+  }
+  .tv-search input{
+    flex:1;
+    border:none;
+    padding:16px 18px;
+    font-family:var(--font-body);
+    font-size:14px;
+    color:var(--tv-black);
+    outline:none;
+  }
+  .tv-search button{
+    background:var(--tv-yellow);
+    border:none;
+    width:52px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .tv-search button svg{width:18px;height:18px;}
+
+  /* ======================================================
+     CONTACT BAR
+     ====================================================== */
+  .tv-contact-bar{
+    padding:44px 24px;
+    border-bottom:1px solid var(--tv-border);
+  }
+  .tv-contact-grid{
+    display:flex;
+    justify-content:center;
+    gap:90px;
+    flex-wrap:wrap;
+    text-align:center;
+  }
+  .tv-contact-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+    font-size:14px;
+    line-height:1.5;
+  }
+  .tv-contact-item img{width:26px;height:26px;}
+
+  /* ======================================================
+     SECTION HEADINGS
+     ====================================================== */
+  .tv-section{padding:64px 24px;}
+  .tv-section-title{
+    text-align:center;
+    font-size:30px;
+    margin-bottom:36px;
+  }
+
+  /* ======================================================
+     GENERAL — BUTTON GRID
+     ====================================================== */
+  .tv-btn-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:14px;
+    max-width:960px;
+    margin:0 auto;
+  }
+  .tv-block-btn{
+    background:var(--tv-black);
+    color:var(--tv-white);
+    text-align:center;
+    padding:22px 18px;
+    font-size:14px;
+    font-weight:500;
+    letter-spacing:0.01em;
+    border:1px solid var(--tv-black);
+    transition:background .2s, color .2s;
+    line-height:1.35;
+  }
+  .tv-block-btn:hover{background:#222;}
+
+  /* ======================================================
+     KNOWLEDGE BASE ACCORDIONS
+     ====================================================== */
+  .tv-kb{max-width:900px;margin:0 auto;}
+
+  .tv-category{
+    border:1px solid var(--tv-border);
+    margin-bottom:10px;
+  }
+  .tv-category-head{
+    background:var(--tv-gray-200);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 20px;
+    font-family:var(--font-display);
+    font-size:14px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+  }
+  .tv-category-head button{
+    all:unset;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    width:100%;
+    cursor:pointer;
+  }
+  .tv-chevron{
+    width:12px;height:12px;
+    flex-shrink:0;
+    transition:transform .2s;
+  }
+  .tv-category.is-open > .tv-category-head .tv-chevron{transform:rotate(180deg);}
+
+  .tv-product-list{
+    display:none;
+  }
+  .tv-category.is-open .tv-product-list{display:block;}
+
+  .tv-product{
+    border-top:1px solid var(--tv-border);
+  }
+  .tv-product-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 20px 14px 32px;
+    font-size:14px;
+    font-weight:500;
+    background:var(--tv-white);
+  }
+  .tv-product-head button{
+    all:unset;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    width:100%;
+    cursor:pointer;
+  }
+  .tv-product.is-open > .tv-product-head .tv-chevron{transform:rotate(180deg);}
+
+  .tv-product-body{display:none;background:var(--tv-gray-100);}
+  .tv-product.is-open .tv-product-body{display:block;}
+
+  .tv-subsection{border-top:1px solid var(--tv-border);}
+  .tv-subsection-head{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 20px 12px 44px;
+    font-size:13px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+    background:var(--tv-gray-100);
+  }
+  .tv-subsection-head button{
+    all:unset;display:flex;align-items:center;justify-content:space-between;width:100%;cursor:pointer;
+  }
+  .tv-subsection.is-open > .tv-subsection-head .tv-chevron{transform:rotate(180deg);}
+  .tv-subsection-body{display:none;padding:18px 20px 26px 44px;}
+  .tv-subsection.is-open .tv-subsection-body{display:block;}
+
+  /* FAQ cards */
+  .tv-faq-item{
+    background:var(--tv-white);
+    border:1px solid var(--tv-border);
+    border-radius:4px;
+    padding:16px 18px;
+    margin-bottom:12px;
+  }
+  .tv-faq-item:last-child{margin-bottom:0;}
+  .tv-faq-q{font-size:14px;font-weight:700;margin-bottom:8px;}
+  .tv-faq-a{font-size:13.5px;line-height:1.6;color:var(--tv-gray-700);}
+
+  /* Manuals */
+  .tv-manual-links{
+    display:flex;
+    gap:40px;
+    flex-wrap:wrap;
+  }
+  .tv-manual-links a{
+    font-size:13.5px;
+    font-weight:600;
+    text-decoration:underline;
+  }
+  .tv-manual-links .tv-manual-title{
+    display:block;
+    font-weight:500;
+    text-decoration:none;
+    margin-bottom:4px;
+    color:var(--tv-black);
+  }
+
+  .tv-inline-link{
+    font-size:13.5px;
+    font-weight:600;
+    text-decoration:underline;
+  }
+
+  /* ======================================================
+     PROMO CARDS
+     ====================================================== */
+  .tv-promo-cards{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:4px;
+  }
+  .tv-promo-card{
+    position:relative;
+    height:220px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:var(--tv-white);
+    font-family:var(--font-display);
+    font-size:17px;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    /* PLACEHOLDER — swap background-image per-card via inline style / data attr for real photos */
+    background:
+      linear-gradient(180deg, rgba(10,10,10,0.35), rgba(10,10,10,0.65)),
+      repeating-linear-gradient(45deg, #222 0 14px, #1a1a1a 14px 28px);
+    background-size:cover;
+    background-position:center;
+    padding:20px;
+  }
+
+  /* ======================================================
+     STILL CAN'T FIND
+     ====================================================== */
+  .tv-cta-band{
+    background:var(--tv-gray-100);
+    padding:50px 24px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:40px;
+    flex-wrap:wrap;
+    text-align:center;
+  }
+  .tv-cta-band h3{font-size:22px;margin-bottom:6px;text-transform:none;}
+  .tv-cta-band p{margin:0;font-size:14px;color:var(--tv-gray-700);}
+  .tv-cta-btn{
+    background:var(--tv-black);
+    color:var(--tv-white);
+    padding:15px 32px;
+    font-size:14px;
+    font-weight:600;
+    white-space:nowrap;
+    border:none;
+  }
+
+  /* ======================================================
+     NEWSLETTER
+     ====================================================== */
+  .tv-newsletter{
+    background:var(--tv-black);
+    color:var(--tv-white);
+    text-align:center;
+    padding:48px 24px;
+  }
+  .tv-newsletter-eyebrow{
+    font-family:var(--font-display);
+    font-size:11px;
+    letter-spacing:0.25em;
+    opacity:0.8;
+    margin-bottom:10px;
+  }
+  .tv-newsletter h3{
+    font-family:var(--font-body);
+    font-size:18px;
+    font-weight:600;
+    text-transform:none;
+    margin-bottom:22px;
+  }
+  .tv-newsletter-form{
+    max-width:420px;
+    margin:0 auto;
+    display:flex;
+    border-bottom:1px solid rgba(255,255,255,0.4);
+  }
+  .tv-newsletter-form input{
+    flex:1;
+    background:transparent;
+    border:none;
+    color:var(--tv-white);
+    padding:10px 4px;
+    font-size:14px;
+    outline:none;
+  }
+  .tv-newsletter-form input::placeholder{color:rgba(255,255,255,0.6);}
+  .tv-newsletter-form button{
+    background:transparent;
+    border:none;
+    color:var(--tv-yellow);
+    padding:0 6px;
+    display:flex;align-items:center;
+  }
+  .tv-newsletter-form button svg{width:18px;height:18px;}
+
+  /* ======================================================
+     FOOTER
+     ====================================================== */
+  .tv-footer{
+    background:var(--tv-black);
+    color:var(--tv-white);
+    padding:48px 24px 30px;
+  }
+  .tv-footer-grid{
+    display:grid;
+    grid-template-columns:1.3fr 1fr 1fr 1fr 1fr;
+    gap:24px;
+    max-width:var(--max-width);
+    margin:0 auto;
+    padding-bottom:34px;
+  }
+  .tv-footer-col h4{
+    font-family:var(--font-body);
+    font-size:13px;
+    font-weight:700;
+    text-transform:none;
+    margin-bottom:16px;
+  }
+  .tv-footer-col p{
+    font-size:12.5px;
+    color:rgba(255,255,255,0.75);
+    margin:0 0 14px;
+    line-height:1.6;
+  }
+  .tv-footer-col p b{display:block;color:var(--tv-white);font-weight:600;margin-bottom:2px;}
+  .tv-footer-col ul li{margin-bottom:10px;}
+  .tv-footer-col ul a{
+    font-size:12.5px;
+    color:rgba(255,255,255,0.75);
+    transition:color .2s;
+  }
+  .tv-footer-col ul a:hover{color:var(--tv-white);}
+  .tv-footer-social{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    padding-top:26px;
+    border-top:1px solid rgba(255,255,255,0.15);
+  }
+  .tv-footer-social a{
+    width:34px;height:34px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,0.4);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .tv-footer-social svg{width:15px;height:15px;stroke:var(--tv-white);}
+
+  /* Mobile accordion footer toggles (hidden on desktop) */
+  .tv-footer-mobile-toggle{display:none;}
+
+  /* ======================================================
+     RESPONSIVE — MOBILE
+     ====================================================== */
+  @media (max-width: 860px){
+    .tv-nav-links{display:none;}
+    .tv-hamburger{display:block;}
+    .tv-hamburger svg{width:22px;height:22px;stroke:var(--tv-white);}
+    .tv-header-inner{padding:14px 20px;}
+
+    .tv-hero{
+      padding:60px 20px 70px;
+      background-image:
+        linear-gradient(180deg, rgba(10,10,10,0.45) 0%, rgba(10,10,10,0.7) 100%),
+        url('assets/hero-mobile.png');
+    }
+    .tv-hero h1{font-size:30px;}
+
+    .tv-contact-grid{gap:34px;}
+
+    .tv-section{padding:44px 20px;}
+    .tv-section-title{font-size:24px;}
+
+    .tv-btn-grid{grid-template-columns:1fr;}
+
+    .tv-promo-cards{grid-template-columns:1fr;}
+
+    .tv-cta-band{flex-direction:column;gap:18px;}
+
+    /* Footer collapses into accordions on mobile */
+    .tv-footer-grid{grid-template-columns:1fr;gap:0;padding-bottom:10px;}
+    .tv-footer-col.contact{margin-bottom:24px;}
+    .tv-footer-col.linked{border-top:1px solid rgba(255,255,255,0.15);}
+    .tv-footer-col.linked h4{
+      margin:0;
+      padding:16px 0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      cursor:pointer;
+    }
+    .tv-footer-mobile-toggle{display:inline-block;font-size:16px;}
+    .tv-footer-col.linked ul{display:none;padding-bottom:16px;}
+    .tv-footer-col.linked.is-open ul{display:block;}
+  }
+
+  @media (max-width: 500px){
+    .tv-hero h1{font-size:26px;}
+    .tv-contact-grid{gap:26px;}
+    .tv-contact-item{font-size:13px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     PROMO BAR
+     ============================================================ -->
+<div class="tv-promo-bar">PROMO</div>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="tv-header">
+  <div class="tv-header-inner">
+    <a href="/" class="tv-logo">
+      <img src="assets/logo.png" alt="Trailer Valet">
+    </a>
+
+    <nav class="tv-nav-links">
+      <a href="/collections/all">Products</a>
+      <a href="/blogs/news">Blog</a>
+      <a href="/pages/support-center">Support &amp; Service</a>
+      <a href="/collections/sale">Sale</a>
+    </nav>
+
+    <div class="tv-nav-icons">
+      <a href="/search" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </a>
+      <a href="/account" aria-label="Account">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+      </a>
+      <a href="/cart" aria-label="Cart" class="tv-cart-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L4 3H2"/><circle cx="9" cy="20" r="1"/><circle cx="17" cy="20" r="1"/></svg>
+        <span class="count">0</span>
+      </a>
+      <button class="tv-hamburger" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     HERO — PLACEHOLDER background, swap in CSS .tv-hero
+     ============================================================ -->
+<section class="tv-hero">
+  <div class="tv-hero-eyebrow">WELCOME TO</div>
+  <h1>Trailer Valet<br>Support Center</h1>
+  <form class="tv-search" onsubmit="return false;">
+    <input type="text" placeholder="Search our knowledge base">
+    <button type="submit" aria-label="Search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </button>
+  </form>
+</section>
+
+<!-- ============================================================
+     CONTACT BAR
+     ============================================================ -->
+<section class="tv-contact-bar">
+  <div class="tv-contact-grid">
+    <div class="tv-contact-item">
+      <img src="assets/icon-phone.png" alt="">
+      <span>1-844-846-9344</span>
+    </div>
+    <div class="tv-contact-item">
+      <img src="assets/icon-address.png" alt="">
+      <span>16021 Euclid Ave.<br>Chino, CA 91708</span>
+    </div>
+    <div class="tv-contact-item">
+      <img src="assets/icon-email.png" alt="">
+      <span>support@trailervalet.com</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     GENERAL
+     ============================================================ -->
+<section class="tv-section">
+  <div class="tv-wrap">
+    <h2 class="tv-section-title">General</h2>
+    <div class="tv-btn-grid">
+      <a class="tv-block-btn" href="https://trailervalet.com/pages/register-product-2">Register Your Product</a>
+      <a class="tv-block-btn" href="https://support.trailervalet.com/portal/en/kb/articles/safety-information">Safety Information</a>
+      <a class="tv-block-btn" href="https://support.trailervalet.com/portal/en/kb/articles/warranty-policy">Warranty Policy</a>
+      <a class="tv-block-btn" href="https://support.trailervalet.com/portal/en/kb/articles/ready-to-return-your-unit">Return Instructions</a>
+      <a class="tv-block-btn" href="https://trailervalet.com/pages/return-policy">Return Policy</a>
+      <a class="tv-block-btn" href="/pages/schedule-demo">Schedule an In-Person Demo</a>
+      <a class="tv-block-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfJOgJDgCq2wROZyqaGUDoNB6geIu3vz_RcmKIv6Eu3zpPG6Q/viewform?fbzx=6214346390886924362">File a Warranty Claim</a>
+      <a class="tv-block-btn" href="https://support.trailervalet.com/portal/en/kb/articles/slope-calculation-tools">Slope Calculation Tools</a>
+      <a class="tv-block-btn" href="/pages/find-your-product">Find Your Trailer Valet Product</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     KNOWLEDGE BASE BY PRODUCT
+     ============================================================ -->
+<section class="tv-section" style="background:var(--tv-gray-100);padding-top:60px;">
+  <div class="tv-wrap">
+    <h2 class="tv-section-title">Knowledge Base by Product</h2>
+    <div class="tv-kb" id="tv-kb"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROMO CARDS — PLACEHOLDER images, swap via data-bg below
+     ============================================================ -->
+<section class="tv-promo-cards">
+  <a class="tv-promo-card" href="/collections/replacement-parts" style="background-image:linear-gradient(180deg, rgba(10,10,10,0.25), rgba(10,10,10,0.6)), url('assets/promo-shop-parts.png')">Shop Replacement Parts</a>
+  <a class="tv-promo-card" href="/pages/manuals" style="background-image:linear-gradient(180deg, rgba(10,10,10,0.25), rgba(10,10,10,0.6)), url('assets/promo-manuals.png')">Manuals</a>
+  <a class="tv-promo-card" href="/pages/digital-catalog" style="background-image:linear-gradient(180deg, rgba(10,10,10,0.25), rgba(10,10,10,0.6)), url('assets/promo-catalog.png')">Download Online Catalog</a>
+</section>
+
+<!-- ============================================================
+     STILL CAN'T FIND AN ANSWER
+     ============================================================ -->
+<section class="tv-cta-band">
+  <div>
+    <h3>Still can't find an answer?</h3>
+    <p>Send us a ticket and we will get back to you.</p>
+  </div>
+  <a class="tv-cta-btn" href="/pages/submit-a-ticket">Submit a ticket</a>
+</section>
+
+<!-- ============================================================
+     NEWSLETTER
+     ============================================================ -->
+<section class="tv-newsletter">
+  <div class="tv-newsletter-eyebrow">Subscriber to our newsletter</div>
+  <h3>Stay updated! Sign up for new products, promotions and more;</h3>
+  <form class="tv-newsletter-form" onsubmit="return false;">
+    <input type="email" placeholder="Your email address" required>
+    <button type="submit" aria-label="Subscribe">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </button>
+  </form>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="tv-footer">
+  <div class="tv-footer-grid">
+    <div class="tv-footer-col contact">
+      <h4>Contact</h4>
+      <p><b>Address</b>16021 Euclid Ave.<br>Chino, CA 91708</p>
+      <p><b>Email</b><a href="mailto:Support@trailervalet.com">Support@trailervalet.com</a></p>
+      <p><b>Phone</b><a href="tel:18448469344">1-844-846-9344</a></p>
+    </div>
+
+    <div class="tv-footer-col linked" data-footer-toggle>
+      <h4>Info <span class="tv-footer-mobile-toggle">+</span></h4>
+      <ul>
+        <li><a href="/pages/our-story">Our Story</a></li>
+        <li><a href="/blogs/news">Blog</a></li>
+        <li><a href="/pages/brand-partner-application">Brand Partner Application</a></li>
+        <li><a href="/pages/reviews">Reviews</a></li>
+      </ul>
+    </div>
+
+    <div class="tv-footer-col linked" data-footer-toggle>
+      <h4>Support <span class="tv-footer-mobile-toggle">+</span></h4>
+      <ul>
+        <li><a href="/pages/support-center">FAQ &amp; Support</a></li>
+        <li><a href="https://trailervalet.com/pages/register-product-2">Register Your Product</a></li>
+        <li><a href="/pages/extend-your-warranty">Extend Your Warranty</a></li>
+        <li><a href="/pages/contact-us">Contact Us</a></li>
+        <li><a href="https://trailervalet.com/pages/return-policy">Return Policy</a></li>
+        <li><a href="https://support.trailervalet.com/portal/en/kb/articles/warranty-policy">Warranty Policy</a></li>
+      </ul>
+    </div>
+
+    <div class="tv-footer-col linked" data-footer-toggle>
+      <h4>Shop <span class="tv-footer-mobile-toggle">+</span></h4>
+      <ul>
+        <li><a href="/collections/all">Shop All</a></li>
+        <li><a href="/collections/remote-controlled-movers">Remote-Controlled Movers</a></li>
+        <li><a href="/collections/drill-powered-movers">Drill-Powered Movers</a></li>
+        <li><a href="/collections/trailer-jacks">Trailer Jacks</a></li>
+        <li><a href="/collections/accessories">Accessories</a></li>
+        <li><a href="/collections/refurbished">Refurbished</a></li>
+      </ul>
+    </div>
+
+    <div class="tv-footer-col linked" data-footer-toggle>
+      <h4>Dealers <span class="tv-footer-mobile-toggle">+</span></h4>
+      <ul>
+        <li><a href="/pages/find-a-dealer">Find A Dealer</a></li>
+        <li><a href="/pages/become-a-dealer">Become A Dealer</a></li>
+        <li><a href="/pages/authorized-dealer">Authorized Dealer</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tv-footer-social">
+    <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M14 9h3V6h-3a4 4 0 0 0-4 4v2H8v3h2v6h3v-6h3l1-3h-4v-2a1 1 0 0 1 1-1z"/></svg></a>
+    <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="2" y="6" width="20" height="12" rx="3"/><polygon points="10 9 16 12 10 15"/></svg></a>
+    <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+    <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg></a>
+  </div>
+</footer>
+
+<!-- ============================================================
+     PRODUCT / KNOWLEDGE BASE DATA
+     Edit this object to add real FAQ / manuals / videos / measurements
+     for each product. Placeholder entries are clearly marked.
+     ============================================================ -->
+<script>
+const CHEVRON = '<svg class="tv-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>';
+
+const PLACEHOLDER_FAQ = [
+  { q: "Placeholder question about this product goes here?", a: "Placeholder answer copy goes here. Replace with the real FAQ content for this product." },
+  { q: "Placeholder question about this product goes here?", a: "Placeholder answer copy goes here. Replace with the real FAQ content for this product." }
+];
+const PLACEHOLDER_MANUALS = [
+  { title: "Operating Manual", url: "#" },
+  { title: "Quickstart Guide", url: "#" }
+];
+const PLACEHOLDER_VIDEO_LABEL = "Youtube Playlist";
+const PLACEHOLDER_VIDEO_URL = "#";
+const PLACEHOLDER_MEASUREMENTS_LABEL = "Dimensional Callouts";
+const PLACEHOLDER_MEASUREMENTS_URL = "#";
+
+function placeholderProduct(name){
+  return {
+    name: name,
+    faq: PLACEHOLDER_FAQ,
+    manuals: PLACEHOLDER_MANUALS,
+    videoLabel: PLACEHOLDER_VIDEO_LABEL,
+    videoUrl: PLACEHOLDER_VIDEO_URL,
+    measurementsLabel: PLACEHOLDER_MEASUREMENTS_LABEL,
+    measurementsUrl: PLACEHOLDER_MEASUREMENTS_URL
+  };
+}
+
+const KB_DATA = [
+  {
+    name: "MV Series / Movers",
+    products: [
+      {
+        name: "5X",
+        faq: [
+          { q: "What dimensions can the Trailer Valet handle? What is the gear ratio?", a: "A Trailer Valet can handle any sized trailer provided it meets the weight limits of that particular model. We recommend inviting a second person to guide your trailer from the opposite end, especially in tight spaces, as turning requirements can vary widely according to the trailer's dimensions. Each Trailer Valet model has a high and low gear train. The 5X has a low gear ratio of 12:1 and a high gear ratio of 4:1." },
+          { q: "What vehicle types does the trailer valet support? Will the Trailer Valet work on my double-axle trailer?", a: "Due to its design, the 5X is ideal for boats and cargo trailers. Yes, it will work on double-axle trailers if the total tongue weight does not exceed a limit of 500 lbs for the 5X." },
+          { q: "What weight will the trailer valet support? Will the Trailer Valet work on inclines?", a: "The 5X supports up to 5,000 lbs. Other Trailer Valet models are capable of supporting variable loads. Each Trailer Valet model can handle its own degree of slope depending on the weight of the trailer and tongue, surface type, and trailer weight distribution. We welcome you to send our support team a picture of the full surface (with clear surface type and angle of slope) including your trailer specs. We can help determine suitability for any of our products and make a recommendation. The MV supports recreational vehicles (RVs), boats, and other similarly sized towable vehicles." },
+          { q: "My trailer uses a standard A-Frame hitch assembly loaded with a battery, winch and propane tank, all of which consume space on the hitch tongue. Would the XL work with this?", a: "The 5X would require space on the hitch for the mounting bracket. If this space is not available, we would recommend considering one of our coupler/hitch mount options." },
+          { q: "Can the Trailer Valet remain attached to the trailer while towing? What happens if you lose control of the trailer?", a: "To move the 5X, you can use a drill and an optional adapter TVDA (TVDA included with the TV5XDA) using the drill attachment; however, this method should only be used when moving your trailer on level surfaces. To avoid injury, the user should have a firm grip and ensure brake disengagement. We recommend using a cordless, non-impact electric drill with a torque output of at least 200 lb-in. We do not recommend using electric drill attachments other than the one designed specifically for the Trailer Valet; our attachment employs a unique design to ensure a snug fit on the gear axles. The drill attachment can be purchased online or over the phone." },
+          { q: "What is the proper tire inflation? Can the Trailer Valet remain attached to the trailer while towing?", a: "80 psi. *Note: Pneumatic tires that require inflation are only found on older 5X units. New units are solid rubber. Only the 5X is able to be put into a stow position. You must crank its wheels off the ground, pull the pin which holds it in a vertical position, rotate the unit horizontally and reinsert the pin. However, this is not possible with any other Trailer Valet unit: they must be removed from the coupler and properly stored before trailering." },
+          { q: "Can the Trailer Valet remain attached to the trailer while towing? What happens if you lose control of the trailer?", a: "Only the 5X is able to be put into a stow position. You must crank its wheels off the ground, pull the pin which holds it in a vertical position, rotate the unit horizontally and reinsert the pin. However, this is not possible with any other Trailer Valet unit: they must be removed from the coupler and properly stored before trailering. The Trailer Valet has an integrated brake which will automatically engage when the handle is released. However, the brake works most reliably on flat surfaces." },
+          { q: "Is the brake progressive? Will the Trailer Valet work on dirt, gravel and grass surfaces?", a: "Our brake acts as a dead man's or emergency brake. The Trailer Valet brake hinders all horizontal movement, but cannot slow down during use. Speed is controlled only by the crank. The 5X can operate only on tightly packed grass with hard soil or tightly packed gravel. We do not recommend using any of our models on other soft or loose surfaces. The Trailer Valet will not move on sandy, muddy, rocky, or severely bumpy ground. If you are unsure whether or not your surface is tightly packed enough, send a clear picture of the surface including your trailer specs to our support email." },
+          { q: "What happens if I'm having issues such as screws coming loose out of the tire axle, the chain is loose, or I can't turn my trailer?", a: "Contact our customer support team immediately, they'll be more than happy to assist you. Email support@trailervalet.com" },
+          { q: "Is there a Maintenance Kit For my TV5X?", a: "Yes, The TV5XMK Maintenance kit includes all you need. 7 x Gear Bushings 10 x Panel Screws 4 x C-Clips for Drive Shaft 1 x Grease Tube Axle Screw Assembly (2 axle bushings and brass spacers, 2 axle screws, 2 screw casings) 5X Axle Chain. No special tools are required. Basic hand tools should be sufficient for installing the parts included in the kit." }
+        ],
+        manuals: [
+          { title: "TV5X Operating Manual", url: "#" },
+          { title: "TV5X Quickstart Guide", url: "#" }
+        ],
+        videoLabel: "TV5X Youtube Playlist",
+        videoUrl: "#",
+        measurementsLabel: "TV5X Dimensional Callouts",
+        measurementsUrl: "#"
+      },
+      placeholderProduct("XL"),
+      placeholderProduct("MV Pro")
+    ]
+  },
+  {
+    name: "RVR Series",
+    products: [
+      placeholderProduct("RVR3"),
+      placeholderProduct("RVR5"),
+      placeholderProduct("RVR9"),
+      placeholderProduct("RVR12")
+    ]
+  },
+  {
+    name: "JX Series",
+    products: [
+      placeholderProduct("JX2-C"),
+      placeholderProduct("JX5-C"),
+      placeholderProduct("JX2-S"),
+      placeholderProduct("JX3-SS"),
+      placeholderProduct("JX7-S"),
+      placeholderProduct("JX7-P"),
+      placeholderProduct("JX10-DW"),
+      placeholderProduct("JX14-DW")
+    ]
+  },
+  {
+    name: "PJX3500",
+    products: [
+      placeholderProduct("PJX3500"),
+      placeholderProduct("PJX3500 Powerboost")
+    ]
+  },
+  {
+    name: "Stabilizer Jack",
+    products: [ placeholderProduct("Stabilizer Jack") ]
+  },
+  {
+    name: "Wheel Dollies",
+    products: [ placeholderProduct("Wheel Dollies") ]
+  },
+  {
+    name: "Drop Hitches",
+    products: [ placeholderProduct("Drop Hitches") ]
+  },
+  {
+    name: "Accessories",
+    products: [ placeholderProduct("Accessories") ]
+  },
+  {
+    name: "Miscellaneous",
+    products: [ placeholderProduct("Miscellaneous") ]
+  }
+];
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+function renderSubsection(label, bodyHtml){
+  return `
+    <div class="tv-subsection">
+      <div class="tv-subsection-head">
+        <button type="button" data-toggle="subsection">${label}${CHEVRON}</button>
+      </div>
+      <div class="tv-subsection-body">${bodyHtml}</div>
+    </div>`;
+}
+
+function renderProduct(p){
+  const faqHtml = p.faq.map(item => `
+    <div class="tv-faq-item">
+      <div class="tv-faq-q">${item.q}</div>
+      <div class="tv-faq-a">${item.a}</div>
+    </div>`).join('');
+
+  const manualsHtml = `
+    <div class="tv-manual-links">
+      ${p.manuals.map(m => `
+        <div>
+          <span class="tv-manual-title">${m.title}</span>
+          <a href="${m.url}">Download</a>
+        </div>`).join('')}
+    </div>`;
+
+  const videosHtml = `<a class="tv-inline-link" href="${p.videoUrl}">${p.videoLabel} &gt;</a>`;
+  const measurementsHtml = `<a class="tv-inline-link" href="${p.measurementsUrl}">${p.measurementsLabel} &gt;</a>`;
+
+  return `
+    <div class="tv-product">
+      <div class="tv-product-head">
+        <button type="button" data-toggle="product">${p.name}${CHEVRON}</button>
+      </div>
+      <div class="tv-product-body">
+        ${renderSubsection('FAQ', faqHtml)}
+        ${renderSubsection('Manuals', manualsHtml)}
+        ${renderSubsection('Videos', videosHtml)}
+        ${renderSubsection('Measurements', measurementsHtml)}
+      </div>
+    </div>`;
+}
+
+function renderCategory(cat){
+  const productsHtml = cat.products.map(renderProduct).join('');
+  return `
+    <div class="tv-category">
+      <div class="tv-category-head">
+        <button type="button" data-toggle="category">${cat.name}${CHEVRON}</button>
+      </div>
+      <div class="tv-product-list">${productsHtml}</div>
+    </div>`;
+}
+
+document.getElementById('tv-kb').innerHTML = KB_DATA.map(renderCategory).join('');
+
+/* Accordion toggle logic (event delegation) */
+document.getElementById('tv-kb').addEventListener('click', function(e){
+  const btn = e.target.closest('button[data-toggle]');
+  if(!btn) return;
+  const type = btn.getAttribute('data-toggle');
+  const parentClass = type === 'category' ? 'tv-category' : (type === 'product' ? 'tv-product' : 'tv-subsection');
+  const el = btn.closest('.' + parentClass);
+  el.classList.toggle('is-open');
+});
+
+/* Footer mobile accordion toggle */
+document.querySelectorAll('[data-footer-toggle]').forEach(col => {
+  col.querySelector('h4').addEventListener('click', () => {
+    if(window.innerWidth <= 860){
+      col.classList.toggle('is-open');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

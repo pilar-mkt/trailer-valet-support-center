@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Return Instructions | Trailer Valet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ======================================================
+     Shared design tokens — keep in sync with support-center.html
+     (Consider extracting into a single shared asset file in Shopify,
+     e.g. assets/tv-support.css, once both pages are integrated.)
+     ====================================================== */
+  :root{
+    --tv-black:#0a0a0a;
+    --tv-white:#ffffff;
+    --tv-yellow:#ffcc02;
+    --tv-gray-100:#f5f5f5;
+    --tv-gray-200:#ececec;
+    --tv-gray-300:#dcdcdc;
+    --tv-gray-500:#8a8a8a;
+    --tv-gray-700:#4a4a4a;
+    --tv-border:#e2e2e2;
+
+    --font-display:'Oswald', sans-serif;
+    --font-body:'Inter', sans-serif;
+
+    --max-width:1280px;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:var(--font-body);
+    color:var(--tv-black);
+    background:var(--tv-white);
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;}
+  ul{margin:0;padding:0;list-style:none;}
+
+  .tv-wrap{max-width:var(--max-width);margin:0 auto;padding:0 24px;}
+
+  h1,h2,h3{
+    font-family:var(--font-display);
+    text-transform:uppercase;
+    font-weight:700;
+    letter-spacing:0.02em;
+    margin:0;
+  }
+
+  /* PROMO BAR */
+  .tv-promo-bar{
+    background:var(--tv-black);
+    color:var(--tv-white);
+    text-align:center;
+    font-family:var(--font-display);
+    font-size:11px;
+    letter-spacing:0.15em;
+    padding:8px 0;
+  }
+
+  /* HEADER */
+  .tv-header{background:var(--tv-black);color:var(--tv-white);}
+  .tv-header-inner{
+    display:flex;align-items:center;justify-content:space-between;padding:16px 24px;
+  }
+  .tv-logo{
+    display:flex;align-items:center;
+  }
+  .tv-logo img{
+    height:26px;
+    width:auto;
+    display:block;
+  }
+  .tv-nav-links{display:flex;gap:36px;font-size:13px;letter-spacing:0.04em;text-transform:uppercase;}
+  .tv-nav-links a{opacity:0.9;transition:opacity .2s;}
+  .tv-nav-links a:hover{opacity:1;}
+  .tv-nav-icons{display:flex;align-items:center;gap:20px;}
+  .tv-nav-icons svg{width:19px;height:19px;stroke:var(--tv-white);}
+  .tv-cart-badge{position:relative;}
+  .tv-cart-badge .count{
+    position:absolute;top:-8px;right:-9px;background:var(--tv-yellow);color:var(--tv-black);
+    font-size:10px;font-weight:700;width:15px;height:15px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .tv-hamburger{display:none;}
+
+  /* PAGE CONTENT */
+  .tv-return-content{
+    max-width:760px;
+    margin:0 auto;
+    padding:56px 24px 40px;
+  }
+  .tv-return-content h1{
+    font-size:34px;
+    line-height:1.2;
+    margin-bottom:28px;
+  }
+  .tv-return-content p{
+    font-size:15px;
+    line-height:1.75;
+    color:var(--tv-black);
+    margin:0 0 22px;
+  }
+  .tv-return-content p b{font-weight:700;}
+  .tv-back-link{
+    display:inline-block;
+    margin:8px 0 32px;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+  }
+  .tv-divider{
+    max-width:760px;
+    margin:0 auto;
+    border:none;
+    border-top:1px solid var(--tv-border);
+  }
+
+  /* GENERAL — reused section */
+  .tv-section{padding:56px 24px;}
+  .tv-section-title{text-align:center;font-size:30px;margin-bottom:36px;}
+  .tv-btn-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:14px;
+    max-width:960px;
+    margin:0 auto;
+  }
+  .tv-block-btn{
+    background:var(--tv-black);color:var(--tv-white);text-align:center;
+    padding:22px 18px;font-size:14px;font-weight:500;letter-spacing:0.01em;
+    border:1px solid var(--tv-black);transition:background .2s;line-height:1.35;
+  }
+  .tv-block-btn:hover{background:#222;}
+
+  /* NEWSLETTER */
+  .tv-newsletter{background:var(--tv-black);color:var(--tv-white);text-align:center;padding:48px 24px;}
+  .tv-newsletter-eyebrow{font-family:var(--font-display);font-size:11px;letter-spacing:0.25em;opacity:0.8;margin-bottom:10px;}
+  .tv-newsletter h3{font-family:var(--font-body);font-size:18px;font-weight:600;text-transform:none;margin-bottom:22px;}
+  .tv-newsletter-form{max-width:420px;margin:0 auto;display:flex;border-bottom:1px solid rgba(255,255,255,0.4);}
+  .tv-newsletter-form input{flex:1;background:transparent;border:none;color:var(--tv-white);padding:10px 4px;font-size:14px;outline:none;}
+  .tv-newsletter-form input::placeholder{color:rgba(255,255,255,0.6);}
+  .tv-newsletter-form button{background:transparent;border:none;color:var(--tv-yellow);padding:0 6px;display:flex;align-items:center;}
+  .tv-newsletter-form button svg{width:18px;height:18px;}
+
+  /* FOOTER */
+  .tv-footer{background:var(--tv-black);color:var(--tv-white);padding:48px 24px 30px;}
+  .tv-footer-grid{
+    display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr 1fr;gap:24px;
+    max-width:var(--max-width);margin:0 auto;padding-bottom:34px;
+  }
+  .tv-footer-col h4{font-family:var(--font-body);font-size:13px;font-weight:700;text-transform:none;margin-bottom:16px;}
+  .tv-footer-col p{font-size:12.5px;color:rgba(255,255,255,0.75);margin:0 0 14px;line-height:1.6;}
+  .tv-footer-col p b{display:block;color:var(--tv-white);font-weight:600;margin-bottom:2px;}
+  .tv-footer-col ul li{margin-bottom:10px;}
+  .tv-footer-col ul a{font-size:12.5px;color:rgba(255,255,255,0.75);transition:color .2s;}
+  .tv-footer-col ul a:hover{color:var(--tv-white);}
+  .tv-footer-social{display:flex;justify-content:center;gap:14px;padding-top:26px;border-top:1px solid rgba(255,255,255,0.15);}
+  .tv-footer-social a{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:center;}
+  .tv-footer-social svg{width:15px;height:15px;stroke:var(--tv-white);}
+  .tv-footer-mobile-toggle{display:none;}
+
+  /* RESPONSIVE */
+  @media (max-width: 860px){
+    .tv-nav-links{display:none;}
+    .tv-hamburger{display:block;}
+    .tv-hamburger svg{width:22px;height:22px;stroke:var(--tv-white);}
+    .tv-header-inner{padding:14px 20px;}
+
+    .tv-return-content{padding:36px 20px 20px;}
+    .tv-return-content h1{font-size:24px;}
+
+    .tv-section{padding:40px 20px;}
+    .tv-section-title{font-size:24px;}
+    .tv-btn-grid{grid-template-columns:1fr;}
+
+    .tv-footer-grid{grid-template-columns:1fr;gap:0;padding-bottom:10px;}
+    .tv-footer-col.contact{margin-bottom:24px;}
+    .tv-footer-col.linked{border-top:1px solid rgba(255,255,255,0.15);}
+    .tv-footer-col.linked h4{margin:0;padding:16px 0;display:flex;align-items:center;justify-content:space-between;cursor:pointer;}
+    .tv-footer-mobile-toggle{display:inline-block;font-size:16px;}
+    .tv-footer-col.linked ul{display:none;padding-bottom:16px;}
+    .tv-footer-col.linked.is-open ul{display:block;}
+  }
+</style>
+</head>
+<body>
+
+<div class="tv-promo-bar">PROMO</div>
+
+<header class="tv-header">
+  <div class="tv-header-inner">
+    <a href="/" class="tv-logo">
+      <img src="assets/logo.png" alt="Trailer Valet">
+    </a>
+    <nav class="tv-nav-links">
+      <a href="/collections/all">Products</a>
+      <a href="/blogs/news">Blog</a>
+      <a href="/pages/support-center">Support &amp; Service</a>
+      <a href="/collections/sale">Sale</a>
+    </nav>
+    <div class="tv-nav-icons">
+      <a href="/search" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </a>
+      <a href="/account" aria-label="Account">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+      </a>
+      <a href="/cart" aria-label="Cart" class="tv-cart-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L4 3H2"/><circle cx="9" cy="20" r="1"/><circle cx="17" cy="20" r="1"/></svg>
+        <span class="count">0</span>
+      </a>
+      <button class="tv-hamburger" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="tv-return-content">
+  <h1>Ready to Return Your Unit?</h1>
+
+  <p>To facilitate a smooth return process and ensure the safe arrival of your item to our facility, please follow these packaging instructions:</p>
+
+  <p><b>1. Choose the Right Box:</b> Select a sturdy cardboard box that is slightly larger than your unit. This allows ample space for protective padding to reduce excess movement during transit. If you still have the original box in good condition, you may opt to use it for packaging.</p>
+
+  <p><b>2. Wrap Your Unit Securely:</b> Wrap your unit in bubble wrap, styrofoam inserts or similar protective material to safeguard it against impact and vibrations during shipping. Ensure all corners and fragile parts are adequately padded.</p>
+
+  <p><b>3. Fill the Empty Spaces:</b> To prevent shifting inside the box, fill any empty spaces with packing peanuts, air cushions, or crumpled paper. This minimizes movement and provides additional cushioning.</p>
+
+  <p><b>4. Seal the Box Properly:</b> Use high-quality packing tape to seal the box securely. Reinforce all seams and edges to prevent the box from opening during handling.</p>
+
+  <p><b>5. Label Clearly:</b> Clearly label the package with our provided return label and RMA form. This ensures that the package can be easily identified and routed correctly.</p>
+
+  <p>Thank you for packaging your unit securely! If you have any questions or need assistance, please don't hesitate to contact our customer support team at support@trailervalet.com. We value your business and hope to serve you again soon. Safe shipping!</p>
+
+  <a class="tv-back-link" href="/pages/support-center">&lt; Back to Support Center</a>
+</div>
+
+<hr class="tv-divider">
+
+<section class="tv-section">
+  <div class="tv-wrap">
+    <h2 class="tv-section-title">General</h2>
+    <div class="tv-btn-grid">
+      <a class="tv-block-btn" href="https://trailervalet.com/pages/register-product-2">Register Your Product</a>
+      <a class="tv-block-btn" href="https://support.trailervalet.com/portal/en/kb/articles/safety-information">Safety Information</a>
+      <a class="tv-block-btn" href="https://support.trailervalet.com/portal/en/kb/articles/warranty-policy">Warranty Policy</a>
+      <a class="tv-block-btn" href="https://support.trailervalet.com/portal/en/kb/articles/ready-to-return-your-unit">Return Instructions</a>
+      <a class="tv-block-btn" href="https://trailervalet.com/pages/return-policy">Return Policy</a>
+      <a class="tv-block-btn" href="/pages/schedule-demo">Schedule an In-Person Demo</a>
+      <a class="tv-block-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfJOgJDgCq2wROZyqaGUDoNB6geIu3vz_RcmKIv6Eu3zpPG6Q/viewform?fbzx=6214346390886924362">File a Warranty Claim</a>
+      <a class="tv-block-btn" href="https://support.trailervalet.com/portal/en/kb/articles/slope-calculation-tools">Slope Calculation Tools</a>
+      <a class="tv-block-btn" href="/pages/find-your-product">Find Your Trailer Valet Product</a>
+    </div>
+  </div>
+</section>
+
+<section class="tv-newsletter">
+  <div class="tv-newsletter-eyebrow">Subscriber to our newsletter</div>
+  <h3>Stay updated! Sign up for new products, promotions and more;</h3>
+  <form class="tv-newsletter-form" onsubmit="return false;">
+    <input type="email" placeholder="Your email address" required>
+    <button type="submit" aria-label="Subscribe">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </button>
+  </form>
+</section>
+
+<footer class="tv-footer">
+  <div class="tv-footer-grid">
+    <div class="tv-footer-col contact">
+      <h4>Contact</h4>
+      <p><b>Address</b>16021 Euclid Ave.<br>Chino, CA 91708</p>
+      <p><b>Email</b><a href="mailto:Support@trailervalet.com">Support@trailervalet.com</a></p>
+      <p><b>Phone</b><a href="tel:18448469344">1-844-846-9344</a></p>
+    </div>
+
+    <div class="tv-footer-col linked" data-footer-toggle>
+      <h4>Info <span class="tv-footer-mobile-toggle">+</span></h4>
+      <ul>
+        <li><a href="/pages/our-story">Our Story</a></li>
+        <li><a href="/blogs/news">Blog</a></li>
+        <li><a href="/pages/brand-partner-application">Brand Partner Application</a></li>
+        <li><a href="/pages/reviews">Reviews</a></li>
+      </ul>
+    </div>
+
+    <div class="tv-footer-col linked" data-footer-toggle>
+      <h4>Support <span class="tv-footer-mobile-toggle">+</span></h4>
+      <ul>
+        <li><a href="/pages/support-center">FAQ &amp; Support</a></li>
+        <li><a href="https://trailervalet.com/pages/register-product-2">Register Your Product</a></li>
+        <li><a href="/pages/extend-your-warranty">Extend Your Warranty</a></li>
+        <li><a href="/pages/contact-us">Contact Us</a></li>
+        <li><a href="https://trailervalet.com/pages/return-policy">Return Policy</a></li>
+        <li><a href="https://support.trailervalet.com/portal/en/kb/articles/warranty-policy">Warranty Policy</a></li>
+      </ul>
+    </div>
+
+    <div class="tv-footer-col linked" data-footer-toggle>
+      <h4>Shop <span class="tv-footer-mobile-toggle">+</span></h4>
+      <ul>
+        <li><a href="/collections/all">Shop All</a></li>
+        <li><a href="/collections/remote-controlled-movers">Remote-Controlled Movers</a></li>
+        <li><a href="/collections/drill-powered-movers">Drill-Powered Movers</a></li>
+        <li><a href="/collections/trailer-jacks">Trailer Jacks</a></li>
+        <li><a href="/collections/accessories">Accessories</a></li>
+        <li><a href="/collections/refurbished">Refurbished</a></li>
+      </ul>
+    </div>
+
+    <div class="tv-footer-col linked" data-footer-toggle>
+      <h4>Dealers <span class="tv-footer-mobile-toggle">+</span></h4>
+      <ul>
+        <li><a href="/pages/find-a-dealer">Find A Dealer</a></li>
+        <li><a href="/pages/become-a-dealer">Become A Dealer</a></li>
+        <li><a href="/pages/authorized-dealer">Authorized Dealer</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tv-footer-social">
+    <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M14 9h3V6h-3a4 4 0 0 0-4 4v2H8v3h2v6h3v-6h3l1-3h-4v-2a1 1 0 0 1 1-1z"/></svg></a>
+    <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="2" y="6" width="20" height="12" rx="3"/><polygon points="10 9 16 12 10 15"/></svg></a>
+    <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+    <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg></a>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('[data-footer-toggle]').forEach(col => {
+  col.querySelector('h4').addEventListener('click', () => {
+    if(window.innerWidth <= 860){
+      col.classList.toggle('is-open');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
