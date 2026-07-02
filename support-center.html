@@ -68,8 +68,9 @@
      HEADER / NAV
      ====================================================== */
   .tv-header{
-    background:var(--tv-black);
-    color:var(--tv-white);
+    background:var(--tv-white);
+    color:var(--tv-black);
+    border-bottom:1px solid var(--tv-border);
   }
   .tv-header-inner{
     display:flex;
@@ -100,7 +101,7 @@
     align-items:center;
     gap:20px;
   }
-  .tv-nav-icons svg{width:19px;height:19px;stroke:var(--tv-white);}
+  .tv-nav-icons svg{width:19px;height:19px;stroke:var(--tv-black);}
   .tv-cart-badge{
     position:relative;
   }
@@ -507,6 +508,9 @@
      RESPONSIVE — MOBILE
      ====================================================== */
   @media (max-width: 860px){
+    .tv-header{background:var(--tv-black);color:var(--tv-white);border-bottom:none;}
+    .tv-nav-icons svg{stroke:var(--tv-white);}
+    .tv-logo img{filter:brightness(0) invert(1);} /* logo turns white for the dark mobile header — swap for a real white/reversed logo file if available */
     .tv-nav-links{display:none;}
     .tv-hamburger{display:block;}
     .tv-hamburger svg{width:22px;height:22px;stroke:var(--tv-white);}
