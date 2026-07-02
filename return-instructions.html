@@ -65,7 +65,7 @@
   }
 
   /* HEADER */
-  .tv-header{background:var(--tv-black);color:var(--tv-white);}
+  .tv-header{background:var(--tv-white);color:var(--tv-black);border-bottom:1px solid var(--tv-border);}
   .tv-header-inner{
     display:flex;align-items:center;justify-content:space-between;padding:16px 24px;
   }
@@ -81,7 +81,7 @@
   .tv-nav-links a{opacity:0.9;transition:opacity .2s;}
   .tv-nav-links a:hover{opacity:1;}
   .tv-nav-icons{display:flex;align-items:center;gap:20px;}
-  .tv-nav-icons svg{width:19px;height:19px;stroke:var(--tv-white);}
+  .tv-nav-icons svg{width:19px;height:19px;stroke:var(--tv-black);}
   .tv-cart-badge{position:relative;}
   .tv-cart-badge .count{
     position:absolute;top:-8px;right:-9px;background:var(--tv-yellow);color:var(--tv-black);
@@ -169,6 +169,9 @@
 
   /* RESPONSIVE */
   @media (max-width: 860px){
+    .tv-header{background:var(--tv-black);color:var(--tv-white);border-bottom:none;}
+    .tv-nav-icons svg{stroke:var(--tv-white);}
+    .tv-logo img{filter:brightness(0) invert(1);}
     .tv-nav-links{display:none;}
     .tv-hamburger{display:block;}
     .tv-hamburger svg{width:22px;height:22px;stroke:var(--tv-white);}
